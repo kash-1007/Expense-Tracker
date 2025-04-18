@@ -1,0 +1,34 @@
+<nav class="navbar">
+  <div class="logo">
+    <img src="assets/ChatGPT_Image_Apr_9__2025__12_48_26_AM-removebg-preview.png" alt="SpendWise Logo" />
+    <span>SpendWise</span>
+  </div>
+
+  <div class="nav-links">
+    <!-- Show these links if the user is logged in -->
+    <div *ngIf="isLoggedIn">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/expense-analysis">Analysis</a>
+      <a routerLink="/ai-mitra">AI Mitra</a>
+      <a routerLink="/show-expenses">All Expenses</a>
+      <a routerLink="/profile">Profile</a>
+      <button class="theme-toggle" (click)="toggleDarkMode()" aria-label="Toggle Theme">
+        <span *ngIf="!isDarkMode">🌙</span>
+        <span *ngIf="isDarkMode">☀️</span>
+      </button>
+    </div>
+
+    <!-- Show these links if the user is not logged in -->
+    <div *ngIf="!isLoggedIn">
+      <a routerLink="/landing">Why Us</a>
+      <a routerLink="/login">Login</a>
+      <a routerLink="/register">Register</a>
+      
+    </div>
+  </div>
+
+  
+
+  <!-- Show logout button after login -->
+  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+</nav>

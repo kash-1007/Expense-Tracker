@@ -1,0 +1,32 @@
+<div class="expenses-container">
+    <h2>Expense List</h2>
+
+    <div class="filters">
+      <input type="date" [(ngModel)]="filterDate" placeholder="Filter by Date" />
+      <input type="number" [(ngModel)]="filterAmount" placeholder="Filter by Amount" />
+      <input type="text" [(ngModel)]="filterCategory" placeholder="Filter by Category" />
+      <button (click)="applyFilters()">Apply Filters</button>
+      <button (click)="clearFilters()">Clear</button>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of filteredExpenses">
+
+          <td>{{ expense.date }}</td>
+          <td>{{ expense.category }}</td>
+          <td>₹{{ expense.amount }}</td>
+          <td>{{ expense.title }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

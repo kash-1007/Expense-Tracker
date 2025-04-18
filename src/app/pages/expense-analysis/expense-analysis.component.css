@@ -1,0 +1,34 @@
+.chart-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .chart-section h3 {
+    width: 200px; /* Fixed width for headings */
+    text-align: right;
+    margin-right: 20px;
+  }
+  
+  .chart-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  canvas {
+    display: block;
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .chart-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    height: 320px; /* 👈 Add this line */
+  }
+  

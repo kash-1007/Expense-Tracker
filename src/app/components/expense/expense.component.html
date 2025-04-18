@@ -1,0 +1,56 @@
+<div class="expense-container">
+
+  <!-- Add Expense Form -->
+  <div class="expense-form">
+    <form (submit)="addExpense()" class="form-wrapper">
+      <div class="form-grid">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="newExpense.title" name="title" required />
+          <label>Title</label>
+        </div>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="newExpense.category" name="category" required />
+          <label>Category</label>
+        </div>
+        <div class="form-group">
+          <input type="number" [(ngModel)]="newExpense.amount" name="amount" required />
+          <label>Amount (₹)</label>
+        </div>
+        <div class="form-group">
+          <input type="date" [(ngModel)]="newExpense.date" name="date" required />
+          <label>Date</label>
+        </div>
+      </div>
+      <div class="form-group full-width">
+        <button type="submit" class="add-btn">➕ Add Expense</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Expense Table -->
+  <div class="expense-table card mt-4">
+    <h4 class="mb-3">💼 Expense Summary</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of expenses">
+          <td>{{ expense.title }}</td>
+          <td><span class="badge">{{ expense.category }}</span></td>
+          <td>₹{{ expense.amount }}</td>
+          <td>{{ expense.date }}</td>
+          <td>
+            <button (click)="deleteExpense(expense.id)" class="btn btn-danger btn-sm">🗑 Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
