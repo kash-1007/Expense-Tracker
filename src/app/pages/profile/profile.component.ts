@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
     name: 'Kashish',
     email: 'kashish@example.com',
     phone: '+91-9876543210',
-    startDate: new Date('2024-11-01'),
+    startDate: new Date('2025-05-10'),
     profilePic: 'assets/profile.jpg',
     quote: 'Save today and enjoy tomorrow 🌸'
   };

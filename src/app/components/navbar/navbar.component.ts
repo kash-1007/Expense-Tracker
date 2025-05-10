@@ -18,12 +18,7 @@ export class NavbarComponent implements OnInit {
       this.isDarkMode = true;
       this.renderer.addClass(document.body, 'dark-mode');
     }
-
-    // Check if the user is logged in (you can adjust this as per your logic)
-    const userToken = localStorage.getItem('userToken');
-    if (userToken) {
-      this.isLoggedIn = true;
-    }
+  
   }
 
   toggleDarkMode() {
@@ -38,9 +33,5 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  logout() {
-    // Handle logout logic, like removing the token and updating the logged-in status
-    localStorage.removeItem('userToken');
-    this.isLoggedIn = false;
-  }
+  
 }

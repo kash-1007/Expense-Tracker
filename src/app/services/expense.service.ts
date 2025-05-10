@@ -49,6 +49,21 @@ export class ExpenseService {
   deleteExpense(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
   }
+
+  getDailyExpenses(): Observable<Expense[]> {
+    return this.http.get<Expense[]>(`${this.apiUrl}/daily`);
+  }
+
+  // Get weekly expenses
+  getWeeklyExpenses(): Observable<Expense[]> {
+    return this.http.get<Expense[]>(`${this.apiUrl}/weekly`);
+  }
+
+  // Get monthly expenses
+  getMonthlyExpenses(): Observable<Expense[]> {
+    return this.http.get<Expense[]>(`${this.apiUrl}/monthly`);
+  }
+
   
 
   // Error handling

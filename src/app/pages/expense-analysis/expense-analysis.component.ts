@@ -22,13 +22,13 @@ export class ExpenseAnalysisComponent implements AfterViewInit {
   }
 
   createCharts(): void {
-    this.createLineChart(this.dailyLineChart, ['Mon', 'Tue', 'Wed'], [100, 200, 150], 'Daily Line Chart');
+    this.createLineChart(this.dailyLineChart, ['Thu', 'Fri', 'Sat'], [100, 200, 150], 'Daily Line Chart');
     this.createPieChart(this.dailyPieChart, ['Food', 'Travel', 'Others'], [300, 500, 200]);
 
     this.createLineChart(this.weeklyLineChart, ['Week 1', 'Week 2', 'Week 3'], [700, 800, 650], 'Weekly Line Chart');
     this.createPieChart(this.weeklyPieChart, ['Bills', 'Groceries', 'Entertainment'], [400, 300, 200]);
 
-    this.createLineChart(this.monthlyLineChart, ['Jan', 'Feb', 'Mar'], [2000, 1800, 2100], 'Monthly Line Chart');
+    this.createLineChart(this.monthlyLineChart, ['Mar', 'Apr', 'May'], [2000, 1800, 2100], 'Monthly Line Chart');
     this.createPieChart(this.monthlyPieChart, ['Rent', 'Shopping', 'Savings'], [1000, 700, 400]);
   }
 

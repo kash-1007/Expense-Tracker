@@ -50,3 +50,7 @@
     border-radius: 12px;
   }
   
+  [data-theme='dark'] .hero-text {
+    
+    color: black;
+  }

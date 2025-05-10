@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,9 +7,12 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'expense-tracker';
-  constructor(public authService: AuthService) {}
+   // Initially, user is not logged in
 
-  logout() {
-    this.authService.logout();
+  constructor() {
+    // Check localStorage to see if user is already simulated as logged in
+    
   }
+
+  
 }

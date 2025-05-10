@@ -1,12 +1,25 @@
-<div class="chat-container">
-    <h2>AI Mitra - Your Smart Expense Guide</h2>
-    
+<div class="chatbot-container">
+    <h2>🧠 AI-Mitra</h2>
+  
     <div class="chat-box">
-        <div *ngFor="let message of chatMessages">
-            <div [class]="message.type">{{ message.text }}</div>
-        </div>
+      <div *ngFor="let msg of messages" [ngClass]="msg.role">
+        <p>{{ msg.content }}</p>
+      </div>
+  
+      <div *ngIf="loading" class="bot">
+        <p><em>AI-Mitra is thinking...</em></p>
+      </div>
     </div>
-
-    <input type="text" [(ngModel)]="userMessage" placeholder="Ask me anything..." />
-    <button (click)="sendMessage()">Send</button>
-</div>
+  
+    <form (ngSubmit)="sendMessage()" class="input-area">
+      <input
+        [(ngModel)]="userInput"
+        name="userInput"
+        placeholder="Ask anything about your expenses..."
+        autocomplete="off"
+        required
+      />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  

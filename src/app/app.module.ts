@@ -15,9 +15,8 @@ import { RouterModule } from '@angular/router';
 
 import { ExpenseAnalysisComponent } from './pages/expense-analysis/expense-analysis.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { LoginComponent } from './components/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { LogoutComponent } from './components/logout/logout.component';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +28,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     ProfileComponent,
     ExpenseAnalysisComponent,
     RegistrationComponent,
-    LoginComponent,
     LandingComponent,
-    LogoutComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,51 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { ExpenseService } from '../../services/expense.service';
-
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChatbotService } from '../../services/chatbot.service';
 @Component({
   selector: 'app-ai-mitra',
   templateUrl: './ai-mitra.component.html',
   styleUrls: ['./ai-mitra.component.css']
 })
-export class AiMitraComponent implements OnInit {
-  chatMessages: { text: string, type: string }[] = [];
-  userMessage: string = "";
-  monthlyExpenses: any[] = [];
+export class AiMitraComponent {
+  userInput: string = '';
+  messages: { role: string; content: string }[] = [];
+  loading: boolean = false;
 
-  constructor(private expenseService: ExpenseService) {}
+  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.loadCurrentMonthExpenses();
-  }
+  sendMessage() {
+    if (!this.userInput.trim()) return;
 
-  loadCurrentMonthExpenses(): void {
-    this.expenseService.getCurrentMonthExpenses().subscribe(data => {
-      this.monthlyExpenses = data;
+    this.messages.push({ role: 'user', content: this.userInput });
+    this.loading = true;
+
+    const payload = {
+      question: this.userInput,
+      email: 'kashish@example.com'  // Replace this with real user email dynamically
+    };
+    
+
+    this.http.post<any>('http://localhost:8081/api/chatbot', payload).subscribe({
+      next: (response) => {
+        this.messages.push({ role: 'bot', content: response.answer });
+        this.loading = false;
+        this.userInput = '';
+      },
+      error: () => {
+        this.messages.push({ role: 'bot', content: 'We are processing!!! May be there is error in API key' });
+        this.loading = false;
+      }
     });
-  }
-
-  sendMessage(): void {
-    if (!this.userMessage.trim()) return;
-
-    this.chatMessages.push({ text: this.userMessage, type: 'user' });
-
-    let botReply = this.generateResponse(this.userMessage);
-    this.chatMessages.push({ text: botReply, type: 'bot' });
-
-    this.userMessage = ""; // Clear input field
-  }
-
-  generateResponse(message: string): string {
-    if (message.toLowerCase().includes("total spent")) {
-      let total = this.monthlyExpenses.reduce((sum, expense) => sum + expense.amount, 0);
-      return `You have spent ₹${total} this month.`;
-    }
-
-    if (message.toLowerCase().includes("suggest savings")) {
-      let total = this.monthlyExpenses.reduce((sum, expense) => sum + expense.amount, 0);
-      let suggestion = total > 10000 ? "You should reduce spending on non-essential items." : "You're on track! Keep it up.";
-      return `Based on your spending of ₹${total}, ${suggestion}`;
-    }
-
-    return "I'm here to assist with your expenses. Try asking about 'total spent' or 'suggest savings'.";
   }
 }

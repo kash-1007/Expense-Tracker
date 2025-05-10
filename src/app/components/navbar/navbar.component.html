@@ -6,7 +6,7 @@
 
   <div class="nav-links">
     <!-- Show these links if the user is logged in -->
-    <div *ngIf="isLoggedIn">
+  
       <a routerLink="/dashboard">Dashboard</a>
       <a routerLink="/expense-analysis">Analysis</a>
       <a routerLink="/ai-mitra">AI Mitra</a>
@@ -16,19 +16,16 @@
         <span *ngIf="!isDarkMode">🌙</span>
         <span *ngIf="isDarkMode">☀️</span>
       </button>
-    </div>
+    
 
     <!-- Show these links if the user is not logged in -->
-    <div *ngIf="!isLoggedIn">
-      <a routerLink="/landing">Why Us</a>
-      <a routerLink="/login">Login</a>
-      <a routerLink="/register">Register</a>
+    
       
-    </div>
+    
   </div>
 
   
 
   <!-- Show logout button after login -->
-  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+  
 </nav>

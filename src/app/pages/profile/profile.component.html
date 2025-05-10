@@ -1,10 +1,11 @@
 <div class="profile-container">
-  <img src="assets\IMG_20241124_151609 (1).jpg" alt="Profile Picture" class="profile-pic" />
+  <img src="assets\1000_F_271644443_wWj3dDN7Q05syxu2cjskO5MbRlP5lIWY.jpg" alt="Profile Picture" class="profile-pic" />
   <h2>{{ user.name }}</h2>
   <p><strong>Email:</strong> {{ user.email }}</p>
   <p><strong>Phone:</strong> {{ user.phone }}</p>
-  <p><strong>Joined On:</strong> {{ user.startDate | date: 'longDate' }}</p>
+  
   <p><strong>Total Expenses:</strong> ₹{{ totalExpense | number:'1.2-2' }}</p>
   <blockquote class="quote">“{{ user.quote }}”</blockquote>
+
 
 </div>

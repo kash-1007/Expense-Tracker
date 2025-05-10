@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegistrationService } from 'src/app/services/registration.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,39 +7,30 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private registrationService: RegistrationService,
-    private authService: AuthService,
-    private router : Router // Inject AuthService
-  ) {}
+export class LoginComponent {
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
+  constructor(private http: HttpClient, private router: Router) {}
+
+  loginUser() {
+    const loginData = {
+      email: this.email.trim(),
+      password: this.password.trim()
+    };
+
+    this.http.post<any>('http://localhost:8081/api/auth/login', loginData)
+      .subscribe({
+        next: (res) => {
+          console.log('Login successful', res);
+          this.router.navigate(['/dashboard']); // Or wherever you want to go after login
+        },
+        error: (err) => {
+          this.errorMessage = 'Invalid email or password';
+        }
+      });
   }
-
-  onSubmit(): void {
-    if (this.loginForm.invalid) return;
-  
-    const credentials = this.loginForm.value;
-  
-    this.registrationService.loginUser(credentials).subscribe(
-      (res: any) => {
-        alert("Login successful! ✅");
-        this.router.navigate(['/dashboard']);
-      },
-      (err: any) => {
-        alert("Login failed 😓");
-        console.error("Login error:", err);
-      }
-    );
-  }
-  
-  
 }
+

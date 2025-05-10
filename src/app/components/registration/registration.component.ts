@@ -39,20 +39,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.submitted = true;
   
-    if (this.registerForm.invalid) return;
-  
-    this.registrationService.registerUser(this.registerForm.value).subscribe(
-      (response: any) => {
-        alert("Registration successful! 🎉");
-        this.router.navigate(['/login']);
-      },
-      (err: any) => {
-        alert("Something went wrong 💔");
-        console.error("Registration Error:", err);
-      }
-    );
+      // Simulate registration success (call your API for actual registration)
+      this.router.navigate(['/login']);  // Redirect to dashboard
+    }
   }
   
-}
+
